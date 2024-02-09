@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "pm2": "^5.3.1"
+  }
+}
