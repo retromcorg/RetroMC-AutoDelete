@@ -78,7 +78,6 @@ client.on('interactionCreate', async function(interaction) {
 // auto delete messages after 30 seconds
 const { autoDeleteChannel } = require('./config.json');
 client.on("messageCreate", async function(message) {
-    if (message.author.bot) return;
     if (message.channel.type === 'DM') return;
     if (message.channelId !== autoDeleteChannel) return;
 
