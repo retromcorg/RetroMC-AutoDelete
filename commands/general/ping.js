@@ -6,6 +6,6 @@ module.exports = {
         .setDescription('Pong!')
         .setDMPermission(false),
     execute: async function(interaction, client) {
-        interaction.reply('Pong!');
+        await interaction.reply('Pong!');
     }
 }
