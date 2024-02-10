@@ -2,14 +2,20 @@
 
 // setting up all handlers and Discord client
 require('./utils/ProcessHandlers.js')();
-const { Client, PermissionFlagsBits } = require('discord.js');
+const { Client, PermissionFlagsBits, ActivityType } = require('discord.js');
 
 const client = new Client({
     intents: [
         'Guilds',
         'GuildMembers',
         'GuildMessages'
-    ]
+    ],
+    presence: {
+        activities: [{
+            name: 'the Login Channel',
+            type: ActivityType.Watching
+        }],
+    }
 });
 
 client.config = require('./config.json');
