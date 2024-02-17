@@ -22,13 +22,11 @@ client.logs = require("./utils/Logs.js");
 require("./utils/Loader.js")(client);
 require("./utils/Register.js")(client);
 
-const { autoDeleteChannel } = require("./config.json");
-
 client.logs.info(`Logging in...`);
 client.login(client.config.TOKEN);
 client.on("ready", function () {
   client.logs.success(`Logged in as ${client.user.tag}!`);
-  // setting interval to delete all non-bot messages every 4 hours in the case the bot crashes
+  // setting interval to delete all non-bot messages every 4 hours in the case the bot crashes and comes back online
   setInterval(deleteMessages, 14400000);
 });
 
@@ -86,9 +84,9 @@ client.on("interactionCreate", async function (interaction) {
 
 // auto delete messages after 30 seconds
 client.on("messageCreate", async function (message) {
-  if (message.author.bot) return;
-  if (message.channel.type === "DM") return;
   if (message.channelId !== client.config.autoDeleteChannel) return;
+  if (message.author.id === client.config.bypassDeletion) return;
+  if (message.channel.type === "DM") return;
 
   setTimeout(() => {
     message.delete().catch(console.error);
@@ -98,17 +96,20 @@ client.on("messageCreate", async function (message) {
 // delete any messages not caught by the auto delete, such as messages sent before the bot was started, every 4 hours
 async function deleteMessages() {
   const channel = await client.channels.fetch(client.config.autoDeleteChannel);
-  if (!channel) return console.error("Channel not found.");
+  if (!channel) return console.error("Autodeletion channel not found.");
 
   channel.messages
     .fetch()
     .then((messages) => {
-      const userMessages = messages.filter((msg) => !msg.author.bot);
+      // Filter out messages from the bypassDeletion user
+      const deletableMessages = messages.filter(
+        (msg) => msg.author.id !== client.config.bypassDeletion
+      );
 
-      // Check if there are user messages to delete
-      if (userMessages.size > 0) {
-        // Delete all user messages
-        userMessages.forEach(async (msg) => {
+      // Check if there are messages to delete
+      if (deletableMessages.size > 0) {
+        // Delete all messages not sent bypassDeletion user
+        deletableMessages.forEach(async (msg) => {
           try {
             await msg.delete();
           } catch (error) {
@@ -117,7 +118,7 @@ async function deleteMessages() {
             );
           }
         });
-        console.log(`${userMessages.size} user messages deleted.`);
+        console.log(`${deletableMessages.size} user messages deleted.`);
       } else {
         console.log("No user messages to delete.");
       }
