@@ -42,7 +42,7 @@ async function InteractionHandler(interaction, type) {
         content: `There was an error while executing this command!\n\`\`\`Command not found\`\`\``,
         ephemeral: true,
       })
-      .catch(() => {});
+      .catch(() => { });
     client.logs.error(`${type} not found: ${interaction.customId}`);
     return;
   }
@@ -55,13 +55,13 @@ async function InteractionHandler(interaction, type) {
     }
   } catch (error) {
     client.logs.error(error.stack);
-    await interaction.deferReply({ ephemeral: true }).catch(() => {});
+    await interaction.deferReply({ ephemeral: true }).catch(() => { });
     await interaction
       .editReply({
         content: `There was an error while executing this command!\n\`\`\`${error}\`\`\``,
         ephemeral: true,
       })
-      .catch(() => {});
+      .catch(() => { });
   }
 }
 
@@ -85,7 +85,7 @@ client.on("interactionCreate", async function (interaction) {
 // auto delete messages after 30 seconds
 client.on("messageCreate", async function (message) {
   if (message.channelId !== client.config.autoDeleteChannel) return;
-  if (message.author.id === client.config.bypassDeletion) return;
+  if (message.id === client.config.loginMessage) return;
   if (message.channel.type === "DM") return;
 
   setTimeout(() => {
@@ -101,14 +101,14 @@ async function deleteMessages() {
   channel.messages
     .fetch()
     .then((messages) => {
-      // Filter out messages from the bypassDeletion user
+      // Filter out messages
       const deletableMessages = messages.filter(
-        (msg) => msg.author.id !== client.config.bypassDeletion
+        (msg) => msg.id !== client.config.loginMessage
       );
 
       // Check if there are messages to delete
       if (deletableMessages.size > 0) {
-        // Delete all messages not sent bypassDeletion user
+        // Delete all messages apart from the login message
         deletableMessages.forEach(async (msg) => {
           try {
             await msg.delete();

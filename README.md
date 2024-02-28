@@ -22,7 +22,7 @@
 
 ### config.json
 
-- edit `EXAMPLE-config.json` and add your token, application ID, the channel you want to delete messages in, and any user IDs you would like to bypass
+- edit `EXAMPLE-config.json` and add your token, application ID, the channel you want to delete messages in, and any message IDs you would like to bypass
 - rename `EXAMPLE-config.json` to `config.json`
 
 - should look like this, put all IDs and tokens within the empty double quotes
@@ -31,7 +31,7 @@
     "TOKEN": "", <- Discord Bot Token goes here
     "APP_ID": "", <- Discord Application ID goes here
     "autoDeleteChannel": "", <- The channel you want to delete messages in goes here (in our case #login)
-    "bypassDeletion": "" <- The ID of a user you don't want messages deleted from goes here (in our case the pinned message)
+    "loginMessage": "" <- The ID of a user you don't want messages deleted from goes here (in our case the Atlas Utils pinned message)
   }
   ```
 
