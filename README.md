@@ -31,7 +31,7 @@
     "TOKEN": "", <- Discord Bot Token goes here
     "APP_ID": "", <- Discord Application ID goes here
     "autoDeleteChannel": "", <- The channel you want to delete messages in goes here (in our case #login)
-    "loginMessage": "" <- The ID of a user you don't want messages deleted from goes here (in our case the Atlas Utils pinned message)
+    "loginMessage": "" <- The ID of the messages you don't want deleted (in our case the Atlas Utils pinned message)
   }
   ```
 

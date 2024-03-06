@@ -26,8 +26,8 @@ client.logs.info(`Logging in...`);
 client.login(client.config.TOKEN);
 client.on("ready", function () {
   client.logs.success(`Logged in as ${client.user.tag}!`);
-  // setting interval to delete all non-bot messages every 4 hours in the case the bot crashes and comes back online
-  setInterval(deleteMessages, 14400000);
+  // setting interval to delete all non-bot messages every 1 hour in the case the bot crashes and comes back online
+  setInterval(deleteMessages, 3600000);
 });
 
 // handle slash commands
@@ -42,7 +42,7 @@ async function InteractionHandler(interaction, type) {
         content: `There was an error while executing this command!\n\`\`\`Command not found\`\`\``,
         ephemeral: true,
       })
-      .catch(() => { });
+      .catch(() => {});
     client.logs.error(`${type} not found: ${interaction.customId}`);
     return;
   }
@@ -55,13 +55,13 @@ async function InteractionHandler(interaction, type) {
     }
   } catch (error) {
     client.logs.error(error.stack);
-    await interaction.deferReply({ ephemeral: true }).catch(() => { });
+    await interaction.deferReply({ ephemeral: true }).catch(() => {});
     await interaction
       .editReply({
         content: `There was an error while executing this command!\n\`\`\`${error}\`\`\``,
         ephemeral: true,
       })
-      .catch(() => { });
+      .catch(() => {});
   }
 }
 
