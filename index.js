@@ -93,7 +93,7 @@ client.on("messageCreate", async function (message) {
   }, 30000);
 });
 
-// delete any messages not caught by the auto delete, such as messages sent before the bot was started, every 4 hours
+// delete any messages not caught by the auto delete, such as messages sent before the bot was started, every 1 hour
 async function deleteMessages() {
   const channel = await client.channels.fetch(client.config.autoDeleteChannel);
   if (!channel) return console.error("Autodeletion channel not found.");
@@ -118,10 +118,7 @@ async function deleteMessages() {
             );
           }
         });
-        console.log(`${deletableMessages.size} user messages deleted.`);
-      } else {
-        console.log("No user messages to delete.");
-      }
+      } 
     })
     .catch(console.error);
 }
