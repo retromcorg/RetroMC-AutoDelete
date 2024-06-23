@@ -1,50 +1,25 @@
-# RetroMC AutoDelete
+# RetroMC Utils
 
-- Developed by blckhrt for the RetroMC discord server. Used to auto-delete messages 30 seconds after they are sent.
-- Base files (command handlers, event handlers, logging, registering commands) developed by Music Maker
+- Developed by 1blckhrt for the RetroMC Discord Guild. Used to deploy embeds and auto delete messages in the login channel 30 seconds after they are sent.
 
-## Setup
+- Base files (command handlers, event handlers, logging, etc) can be found [here](https://github.com/lukazbaum/discordjs-command-handler)
 
-### Installing Node.JS
+- Requires TypeScript to be installed (all dependencies can be installed by running `npm install`)
 
-[Node.JS website](https://nodejs.org/en)
+- `src/config.json` will be provided by blckhrt
 
-- LTS or current version is highly recommended. NOTE: Node v17 or below won't work
+- `EXAMPLE.env` will need a token, guild ID, and application ID to be put in the corresponding fields. The file then needs to be renamed to `.env`. Tokens and application IDs can be generated at the Discord Developer Portal
 
-### Installing NPM packages
+- `package.json` will need line 9 updated to say `"compile": "npm run clean-linux && tsc",` if in a Linux environment, otherwise no changes are necessary
 
-- `npm install discord.js`
-- `npm install pm2 -g` (OPTIONAL IF YOU RUN OTHER BOTS DIFFERENTLY, this is just how I do it)
-  - `discord.js`
-    - used to interact with Discord's API
-  - `pm2`
-    - used to keep the bot permanently online and handle any errors, global install
+# Setup
 
-### config.json
-
-- edit `EXAMPLE-config.json` and add your token, application ID, the channel you want to delete messages in, and any message IDs you would like to bypass
-- rename `EXAMPLE-config.json` to `config.json`
-
-- should look like this, put all IDs and tokens within the empty double quotes
-  ```
-  {
-    "TOKEN": "", <- Discord Bot Token goes here
-    "APP_ID": "", <- Discord Application ID goes here
-    "autoDeleteChannel": "", <- The channel you want to delete messages in goes here (in our case #login)
-    "loginMessage": "" <- The ID of the messages you don't want deleted (in our case the Atlas Utils pinned message)
-  }
-  ```
-
-## Starting the bot
-
-- with `pm2`
-  - `cd` into the project directory
-  - run `pm2 start index.js` to start the bot
-  - run `pm2 stop index.js` to stop the bot
-  - run `pm2 monit` to monitor the bot and any errors
-  - stays online permanently and handles errors
-- with Node.JS
-  - `cd` into the project directory
-  - run `node .`
-  - may not handle errors
-  - may not stay online permanently
+- `git clone` this repository into specified directory
+- `npm install` to install all dependencies
+- put `config.json` provided by blckhrt in `src` directory
+- fill out `EXAMPLE.env` with necessary fields and invite the bot using Permissions Calculator website found [here](https://discordapi.com/permissions.html#)
+    - needed permissions are `View Channels`, `Send Messages`, `Embed Links`, `Manage Messages`, `Use Application Commands`
+- rename file to `.env`
+- edit `package.json` if in Linux environment, details above
+- run `npm compile` to transpile the codebase into JavaScript
+- run with pm2
