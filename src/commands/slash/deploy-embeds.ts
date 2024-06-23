@@ -20,7 +20,7 @@ export = {
             // Discord Server Rules
             const embed = new EmbedBuilder()
                 .setTitle("**Discord Server Rules**")
-                .setImage("https://cdn.discordapp.com/attachments/1204486874551418892/1254166927576666222/Button-Server-Rules.png?ex=66788178&is=66772ff8&hm=8f0a4c6dcfa55f903b7631213b73b504d510753ea162d93c1fb6e45124b2e800&")
+                .setImage("https://wiki.retromc.org/images/e/e4/Button-Server-Rules.png")
                 .setDescription("Do note that the [global rules](https://wiki.retromc.org/Server_rules#Global_rules) apply to all platforms and services provided by RetroMC.")
                 .addFields({ name: "**1. Advertising**", value: "Advertising or self-promotion of any kind is **not** allowed, including but not limited to the server and Direct Messages." })
                 .addFields({ name: "**2. Chat Behavior**", value: "Be respectful to all players and staff members. NSFW and any form of bigotry are **not** allowed." })
@@ -46,11 +46,11 @@ export = {
             // MC Server Rules
             const embed2 = new EmbedBuilder()
                 .setTitle("MC Server Rules")
-                .setImage("https://cdn.discordapp.com/attachments/1204486874551418892/1254166927576666222/Button-Server-Rules.png?ex=66788178&is=66772ff8&hm=8f0a4c6dcfa55f903b7631213b73b504d510753ea162d93c1fb6e45124b2e800&")
+                .setImage("https://wiki.retromc.org/images/e/e4/Button-Server-Rules.png")
                 .setDescription("Do note that the [global rules](https://wiki.retromc.org/Server_rules#Global_rules) apply to all platforms and services provided by RetroMC.")
                 .addFields({ name: "**1. Griefing**", value: "Breaking or modifying **any** blocks that are part of a build without permission is **considered griefing**. Claiming bases or using farms that are not yours is also considered griefing. This includes abandoned or unclaimed bases." })
                 .addFields({ name: "**2. Exploitation**", value: "Do **not** engage in hacking, cheating, duping, glitching, or exploiting bugs. This includes transmutation, crash slabs, X-ray, and various piston bugs that could potentially give you an advantage. If you find a bug, please report it via ticket at <#641688541444964362>." })
-                .addFields({ name: "**3. AFK Farming**", value: "Macros, autoclickers, non approved bot accounts, or any other means of external automation are **not** allowed. You must be present at your computer and able to respond to chat to be able to collect items. 2 hours is the maximum amount of time you may be AFK at a mob farm." })
+                .addFields({ name: "**3. AFK Farming**", value: "Macros, autoclickers, non approved bot accounts, or any other means of external automation are **not** allowed. You must be present at your computer and able to respond to chat to be able to collect items. Do **not** consecutively AFK at mob farms for a long time." })
                 .addFields({ name: "**4. Claiming**", value: "Do **not** claim a town or area that is not yours. Additionally, keep your town far enough away from other towns to prevent conflict." })
                 .addFields({ name: "**5. Mods**", value: "Cosmetic, quality-of-life, Optifine, mini-maps, and any other non-cheating mods are permitted." })
                 .addFields({ name: "**6. Impersonation/Namesquatting**", value: "You **must** own your account to be able to play. Staff reserve the right to reset the password of suspicious accounts." })
@@ -72,7 +72,7 @@ export = {
             // Server Info
             const embed3 = new EmbedBuilder()
                 .setTitle("**Server Info**")
-                .setImage("https://cdn.discordapp.com/attachments/1204486874551418892/1254166927325270047/Button-RetroMC.png?ex=66788178&is=66772ff8&hm=4a6be22772953ccf9df7f8b32de20a4caafd3baa71e9c4e4f712b068c4869e26&")
+                .setImage("https://wiki.retromc.org/images/9/92/Button-RetroMC.png")
                 .addFields({ name: "Server Essentials", value: "[Beta Evolutions](https://evolutions.johnymuffin.com/) \n[Password Reset](https://forgot.retromc.org/) \n[Statistics](https://j-stats.xyz/) \n[World Map](http://world.retromc.org/) \n[Wiki](https://wiki.retromc.org/index.php?title=Main_Page)" })
                 .addFields({ name: "Community", value: "[Discord Invite](https://discord.retromc.org/) \n[Website](http://retromc.org/) \n[Steam Group](https://steamcommunity.com/groups/retrolands) \n" })
                 .addFields({ name: "Donation Links", value: "[Capes](https://capes.johnymuffin.com/) \n[Webstore](https://store.retromc.org/)" })
