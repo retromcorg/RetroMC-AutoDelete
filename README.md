@@ -23,3 +23,4 @@
 - edit `package.json` if in Linux environment, details above
 - run `npm compile` to transpile the codebase into JavaScript
 - run with pm2
+- run `/deploy-embeds` to deploy embeds

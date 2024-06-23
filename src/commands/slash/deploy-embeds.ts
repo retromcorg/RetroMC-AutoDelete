@@ -30,7 +30,7 @@ export = {
                 .addFields({ name: "**6. Controversial Topics**", value: "Avoid discussing controversial topics, including politics and religion." })
                 .addFields({ name: "**7. Discord TOS**", value: "Adhere by [Discord's TOS and Guidelines](https://discord.com/terms). You **must** be 13+ to join this server." })
                 .setFooter({
-                    text: `Last updated on ${new Date().toLocaleDateString()}`,
+                    text: "View our full rules list on our wiki [here](https://wiki.retromc.org/Server_rules)."
                 })
                 .setColor("Green");
 
@@ -56,7 +56,7 @@ export = {
                 .addFields({ name: "**6. Impersonation/Namesquatting**", value: "You **must** own your account to be able to play. Staff reserve the right to reset the password of suspicious accounts." })
                 .addFields({ name: "**7. Chat**", value: "Advertising is **not** allowed in any capacity. Do **not** discuss controversial topics, this includes politics or religious discussion. NSFW is **not** allowed. You **must** speak English so that Staff can understand you. Do **not** try to evade a mute, you will double your initial punishment. This includes using <#554175928121425940> while muted." })
                 .setFooter({
-                    text: `Last updated on ${new Date().toLocaleDateString()}`,
+                    text: "View our full rules list on our wiki [here](https://wiki.retromc.org/Server_rules)."
                 })
                 .setColor("Red");
 
