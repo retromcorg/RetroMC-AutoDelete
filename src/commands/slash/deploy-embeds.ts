@@ -76,7 +76,7 @@ export = {
                 .addFields({ name: "Server Essentials", value: "[Beta Evolutions](https://evolutions.johnymuffin.com/) \n[Password Reset](https://forgot.retromc.org/) \n[Statistics](https://j-stats.xyz/) \n[World Map](http://world.retromc.org/) \n[Wiki](https://wiki.retromc.org/index.php?title=Main_Page)" })
                 .addFields({ name: "Community", value: "[Discord Invite](https://discord.retromc.org/) \n[Website](http://retromc.org/) \n[Steam Group](https://steamcommunity.com/groups/retrolands) \n" })
                 .addFields({ name: "Donation Links", value: "[Capes](https://capes.johnymuffin.com/) \n[Webstore](https://store.retromc.org/)" })
-                .addFields({ name: "Miscellaneous", value: "[Ban Appeal](https://forms.gle/SYwKDGK2FHEsHBV1A) \n[Staff Application](https://forms.gle/SYwKDGK2FHEsHBV1A) \n[Server Status](https://status.johnymuffin.com/)" })
+                .addFields({ name: "Miscellaneous", value: "[Ban Appeal](https://forms.gle/SYwKDGK2FHEsHBV1A) \n[Staff Application](https://forms.gle/LRDx6Kjx7dB64kki7) \n[Server Status](https://status.johnymuffin.com/)" })
                 .addFields({ name: "Server IP", value: "**mc.retromc.org** \n**Beta 1.7.3**" })
                 .setFooter({
                     text: `Last updated on ${new Date().toLocaleDateString()}`,
