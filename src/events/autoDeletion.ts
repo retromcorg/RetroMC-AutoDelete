@@ -5,7 +5,6 @@ import config from "../config.json";
 export = {
     name: Events.MessageCreate,
     async execute(message: Message): Promise<void> {
-        if (message.author.bot) return; // if message author = bot
         if (message.channelId !== config.autoDeleteChannel) return; // if message's channel ID =/= auto deletion channel
         if (message.id === config.loginMessageID) return; // if message ID = login message (Atlas Utils)
         if (message.channel.type === ChannelType.DM) return; // if channel = DM
