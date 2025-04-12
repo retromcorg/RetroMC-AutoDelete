@@ -1,3 +1,4 @@
+import { env } from "node:process";
 import { fileURLToPath, URL } from "node:url";
 import { Client, Collection, GatewayIntentBits } from "discord.js";
 import { isCommand, isEvent } from "./types/index.js";
@@ -21,4 +22,4 @@ for (const event of events) {
   client[event.once ? "once" : "on"](event.name, async (...args) => event.execute(...args));
 }
 
-await client.login();
+await client.login(env.TOKEN);
