@@ -2,8 +2,6 @@
 
 - Developed by 1blckhrt for the RetroMC Discord Guild. Used to deploy embeds and auto delete messages in the login channel 30 seconds after they are sent.
 
-- Base files (command handlers, event handlers, logging, etc) can be found [here](https://github.com/lukazbaum/discordjs-command-handler)
-
 - Requires TypeScript to be installed (all dependencies can be installed by running `npm install`)
 
 - `src/config.json` will be provided by blckhrt
@@ -18,7 +16,7 @@
 - `npm install` to install all dependencies
 - put `config.json` provided by blckhrt in `src` directory
 - fill out `EXAMPLE.env` with necessary fields and invite the bot using Permissions Calculator website found [here](https://discordapi.com/permissions.html#)
-    - needed permissions are `View Channels`, `Send Messages`, `Embed Links`, `Manage Messages`, `Use Application Commands`
+  - needed permissions are `View Channels`, `Send Messages`, `Embed Links`, `Manage Messages`, `Use Application Commands`
 - rename file to `.env`
 - edit `package.json` if in Linux environment, details above
 - run `npm compile` to transpile the codebase into JavaScript

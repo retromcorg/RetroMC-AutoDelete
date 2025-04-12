@@ -1,29 +1,39 @@
 {
-  "name": "discord-ts-command-handler",
-  "version": "1.0.0",
-  "description": "A comprehensive TypeScript command handler for Discord.js, featuring slash commands, prefix commands, message events, automatic intents, and more.",
-  "main": "src/index.ts",
-  "scripts": {
-    "clean-windows": "if exist dist rd /s /q dist",
-    "clean-linux": "rm -rf dist",
-    "compile": "npm run clean-windows && tsc",
-    "start": "node dist/index.js",
-    "watch": "tsc -w",
-    "cs": "npm run compile && npm run start",
-    "lint": "eslint src/*.ts"
-  },
-  "keywords": [],
-  "author": "Lukas Baum",
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "autodelete",
+  "description": "A Discord bot to send embeds and perform autodeletion in the RetroMC login channel.",
+  "author": "Parker W (1blckhrt)",
   "license": "MIT",
-  "devDependencies": {
-    "@types/node": "^20.12.12",
-    "globals": "^15.6.0",
-    "typescript": "^5.4.5"
+  "main": "dist/index.js",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "commitlint": "commitlint --edit",
+    "dev": "pnpm build && pnpm start",
+    "deploy": "pnpm build && node --env-file=.env dist/deploy-commands.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint --fix src",
+    "lint:check": "eslint src",
+    "prepare": "husky",
+    "start": "node --env-file=.env dist/index.js"
   },
   "dependencies": {
-    "discord.js": "^14.15.2",
-    "dotenv": "^16.4.5",
-    "glob": "^10.3.15",
-    "tslib": "^2.6.3"
+    "discord.js": "^14.18.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-angular": "^19.6.0",
+    "@types/node": "^22.10.4",
+    "eslint": "^8.57.0",
+    "eslint-config-neon": "^0.1.62",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2",
+    "zod": "^3.24.1"
   }
 }
