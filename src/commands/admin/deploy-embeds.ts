@@ -132,7 +132,7 @@ export default {
         .addFields({
           name: "Server Essentials",
           value:
-            "[Beta Evolutions](https://evolutions.johnymuffin.com/) \n[Password Reset](https://forgot.retromc.org/) \n[Statistics](https://statistics.retromc.org/) \n[World Map](http://world.retromc.org/) \n[Wiki](https://wiki.retromc.org/index.php?title=Main_Page)",
+            "[Beta Evolutions](https://canary.discord.com/channels/207454442256072704/1369842910337699942/1369843788218109982) \n[Password Reset](https://forgot.retromc.org/) \n[Statistics](https://statistics.retromc.org/) \n[World Map](http://world.retromc.org/) \n[Wiki](https://wiki.retromc.org/index.php?title=Main_Page)",
         })
         .addFields({
           name: "Community",
