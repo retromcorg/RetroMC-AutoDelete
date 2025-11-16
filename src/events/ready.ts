@@ -1,39 +1,43 @@
-import Logger from "../handler/util/Logger";
-import { Events, ActivityType, TextBasedChannel } from "discord.js";
-import { EventModule, UserStatus } from "../handler";
-import { DiscordClient } from "../handler/util/DiscordClient";
-import config from "../config.json";
+import { Events } from "discord.js";
+import { config } from "../config.js";
+import type { Event } from "../types/index.js";
 
-export = {
-    name: Events.ClientReady,
-    once: true,
-    async execute(client: DiscordClient): Promise<void> {
-        if (!client.user) return;
+const TWO_WEEKS = 14 * 24 * 60 * 60 * 1_000;
 
-        client.user.setStatus(UserStatus.Online);
-        Logger.log(`Ready! Logged in as ${client.user.tag}`);
+export default {
+  name: Events.ClientReady,
+  execute: async client => {
+    console.info(`✅ Successfully logged in as ${client.user.tag}.`);
 
-        async function deleteMessages() {
-            const channel = await client.channels.fetch(config.autoDeleteChannel) as TextBasedChannel;
-            if (!channel) return console.error("Auto deletion channel not found.");
-
-            await channel.messages.fetch()
-                .then((messages) => {
-                    const messagesToDelete = messages.filter((msg) => msg.id !== config.loginMessageID);
-
-                    if (messagesToDelete.size > 0) {
-                        messagesToDelete.forEach(async (msg) => {
-                            try {
-                                msg.delete();
-                            } catch (error) {
-                                console.error(error);
-                            }
-                        });
-                    }
-                }
-                );
-        }
-
-        setInterval(deleteMessages, 3600000);
+    console.debug(`🔍 Fetching channel with ID: ${config.AUTODELETE_CHANNEL}`);
+    const channel = await client.channels.fetch(config.AUTODELETE_CHANNEL);
+    if (!channel?.isTextBased()) {
+      console.warn("⚠️ The autodelete channel in the config is not a text channel or doesn't exist.");
+      throw new Error("Invalid channel type or channel not found.");
     }
-} as EventModule;
+
+    console.debug("📥 Fetching last 50 messages from the channel...");
+    const messages = await channel.messages.fetch({ limit: 50 });
+
+    console.debug(`🧾 Fetched ${messages.size} messages. Checking for deletion candidates...`);
+    let deleted = 0;
+
+    for (const message of messages.values()) {
+      try {
+        const age = Date.now() - message.createdTimestamp;
+        const isNew = age < TWO_WEEKS;
+        const isLoginMsg = message.id === config.LOGIN_MSG_ID;
+
+        if (isNew && !isLoginMsg) {
+          await message.delete();
+          deleted++;
+        }
+      } catch (error) {
+        console.error(`❌ Failed to delete message ${message.id}:`, error);
+        continue;
+      }
+    }
+
+    console.info(`✅ Done. Deleted ${deleted} message(s).`);
+  },
+} as const satisfies Event<Events.ClientReady>;

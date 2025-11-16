@@ -1,8 +1,9 @@
-.idea/
-.vscode/
-dist/
-node_modules/
+# dependencies
+node_modules
+
+# env files
 .env
-package-lock.json
-yarn.lock
-config.json
+src/config.ts
+
+# production
+dist
