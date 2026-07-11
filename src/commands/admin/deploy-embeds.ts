@@ -1,14 +1,21 @@
-import { EmbedBuilder, MessageFlags, PermissionsBitField } from "discord.js";
+import { EmbedBuilder, MessageFlags } from "discord.js";
 import type { Command } from "../../types/index.js";
+
+const ALLOWED_USER_IDS = ["203357643635556353", "145662134712401920"];
+
+const EMBED_MESSAGE_IDS: Record<string, string> = {
+  "discord-rules": "1439459795672498176",
+  "mcserver-rules": "1439459796129550490",
+  "server-info": "1439459797576454285",
+};
 
 export default {
   data: {
     name: "deploy-embeds",
     description: "Deploys the embeds to the specified channel",
-    default_member_permissions: PermissionsBitField.Flags.Administrator.toString(),
   },
   async execute(interaction) {
-    if (interaction.user.id !== interaction.guild?.ownerId) {
+    if (interaction.user.id !== interaction.guild?.ownerId && !ALLOWED_USER_IDS.includes(interaction.user.id)) {
       await interaction.reply({ content: "You do not have permission to use this command." });
       return;
     }
@@ -62,7 +69,8 @@ export default {
       const discord_rules_channel = interaction.guild?.channels.cache.find(channel => channel.name === "discord-rules");
 
       if (discord_rules_channel?.isTextBased()) {
-        await discord_rules_channel.send({ embeds: [embed] });
+        const message = await discord_rules_channel.messages.fetch(EMBED_MESSAGE_IDS["discord-rules"]);
+        await message.edit({ embeds: [embed] });
       } else {
         await interaction.editReply({ content: "The channel `discord-rules` was not found in this server." });
         return;
@@ -119,7 +127,8 @@ export default {
       );
 
       if (mc_server_rules_channel?.isTextBased()) {
-        await mc_server_rules_channel.send({ embeds: [embed2] });
+        const message = await mc_server_rules_channel.messages.fetch(EMBED_MESSAGE_IDS["mcserver-rules"]);
+        await message.edit({ embeds: [embed2] });
       } else {
         await interaction.editReply({ content: "The channel `mcserver-rules` was not found in this server." });
         return;
@@ -132,7 +141,7 @@ export default {
         .addFields({
           name: "Server Essentials",
           value:
-            "[Beta Evolutions](https://evolutions.retromc.org/) \n[Password Reset](https://forgot.retromc.org/) \n[Statistics](https://statistics.retromc.org/) \n[World Map](http://world.retromc.org/) \n[Wiki](https://wiki.retromc.org/index.php?title=Main_Page)",
+             "[Beta Evolutions](https://evolutions.retromc.org/) \n[Password Reset](https://forgot.retromc.org/) \n[Statistics](https://statistics.retromc.org/) \n[World Map](http://world.retromc.org/) \n[Wiki](https://wiki.retromc.org/index.php?title=Main_Page)",
         })
         .addFields({
           name: "Community",
@@ -157,7 +166,8 @@ export default {
       const server_info_channel = interaction.guild?.channels.cache.find(channel => channel.name === "server-info");
 
       if (server_info_channel?.isTextBased()) {
-        await server_info_channel.send({ embeds: [embed3] });
+        const message = await server_info_channel.messages.fetch(EMBED_MESSAGE_IDS["server-info"]);
+        await message.edit({ embeds: [embed3] });
       } else {
         await interaction.editReply({ content: "The channel `discord-rules` was not found in this server." });
         return;
@@ -165,7 +175,8 @@ export default {
 
       // replying to user once embeds are deployed
       await interaction.editReply({ content: "All embeds successfully deployed!" });
-    } catch {
+    } catch (error) {
+      console.error("deploy-embeds failed:", error);
       await interaction.editReply({ content: "There was an error. Please contact blckhrt with the appropriate logs." });
     }
   },
